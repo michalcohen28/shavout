@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תפריט שבועות – משפחת כהן</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf8f0;
+      --warm-white: #fffef9;
+      --sage: #7a9e7e;
+      --dark-sage: #4a7055;
+      --light-sage: #c8deca;
+      --sage-mist: #e8f2e8;
+      --gold: #c9a84c;
+      --light-gold: #f0e4c0;
+      --text-dark: #2d3a2e;
+      --text-mid: #4a5e4c;
+      --text-light: #7a8e7c;
+      --border: #c8deca;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'Noto Serif Hebrew', serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 20%, rgba(122,158,126,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(200,222,202,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== HERO HEADER ===== */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .hero-leaves {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .leaf {
+      position: absolute;
+      opacity: 0;
+      animation: floatIn 1.2s ease forwards;
+    }
+
+    .leaf svg { width: 100%; height: 100%; }
+
+    .leaf-tl { top: -10px; left: -20px; width: 180px; height: 180px; animation-delay: 0.2s; transform-origin: top left; }
+    .leaf-tr { top: -10px; right: -20px; width: 160px; height: 160px; animation-delay: 0.4s; transform-origin: top right; transform: scaleX(-1); }
+    .leaf-bl { bottom: 0; left: -10px; width: 120px; height: 120px; animation-delay: 0.6s; transform-origin: bottom left; }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: scale(0.8) translateY(-10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .holiday-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--sage-mist), var(--light-gold));
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--dark-sage);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+
+    .main-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--dark-sage);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--text-light);
+      font-weight: 300;
+      margin-top: 12px;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.7s forwards;
+    }
+
+    .divider-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 30px 0;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.9s forwards;
+    }
+
+    .divider-ornament::before,
+    .divider-ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+    }
+
+    .ornament-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .ornament-leaf {
+      font-size: 1.1rem;
+      color: var(--sage);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .section:nth-child(1) { animation-delay: 1.0s; }
+    .section:nth-child(2) { animation-delay: 1.15s; }
+    .section:nth-child(3) { animation-delay: 1.3s; }
+    .section:nth-child(4) { animation-delay: 1.45s; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .section-line {
+      width: 40px;
+      flex: none;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--dark-sage);
+      white-space: nowrap;
+    }
+
+    .section-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ===== MENU ITEMS ===== */
+    .menu-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .menu-item {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(200,222,202,0.5);
+      border-radius: 14px;
+      padding: 18px 22px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-item::before {
+      display: none;
+    }
+
+    .menu-item {
+      text-align: center;
+      direction: rtl;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(74,112,85,0.12);
+      border-color: rgba(200,222,202,0.9);
+    }
+
+    .item-name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .item-desc {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ===== DESSERT SPECIAL ===== */
+    .menu-item.featured {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,228,192,0.3));
+      border-color: rgba(201,168,76,0.35);
+    }
+
+    .menu-item.featured::before {
+      background: linear-gradient(to bottom, var(--gold), var(--light-gold));
+    }
+
+    .menu-item.featured .item-name {
+      color: #7a5a1e;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.8s forwards;
+    }
+
+    .footer-love {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--dark-sage);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-family {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-top: 6px;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-leaves {
+      font-size: 1.4rem;
+      margin-top: 16px;
+      letter-spacing: 0.3em;
+      color: var(--sage);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      .hero { padding: 40px 10px 30px; }
+      .menu-item { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-leaves">
+        <!-- Top-left leaf cluster -->
+        <div class="leaf leaf-tl">
+          <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="60" cy="90" rx="55" ry="22" fill="#7a9e7e" opacity="0.25" transform="rotate(-40 60 90)"/>
+            <ellipse cx="80" cy="60" rx="45" ry="16" fill="#4a7055" opacity="0.2" transform="rotate(-20 80 60)"/>
+            <ellipse cx="40" cy="110" rx="40" ry="14" fill="#c8deca" opacity="0.35" transform="rotate(-60 40 110)"/>
+            <line x1="60" y1="90" x2="110" y2="50" stroke="#4a7055" stroke-width="1.5" opacity="0.4"/>
+            <line x1="80" y1="60" x2="115" y2="40" stroke="#4a7055" stroke-width="1" opacity="0.3"/>
+          </svg>
+        </div>
+        <!-- Top-right leaf cluster -->
+        <div class="leaf leaf-tr">
+          <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="60" cy="80" rx="50" ry="20" fill="#7a9e7e" opacity="0.25" transform="rotate(-35 60 80)"/>
+            <ellipse cx="75" cy="50" rx="40" ry="15" fill="#4a7055" opacity="0.18" transform="rotate(-15 75 50)"/>
+            <ellipse cx="35" cy="105" rx="38" ry="13" fill="#c8deca" opacity="0.3" transform="rotate(-55 35 105)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="holiday-badge">✦ חג שבועות שמח ✦</div>
+      <h1 class="main-title">תפריט שבועות</h1>
+      <p class="subtitle">משפחת כהן • חג הביכורים</p>
+
+      <div class="divider-ornament">
+        <span class="ornament-leaf">🌿</span>
+        <div class="ornament-dot"></div>
+        <div class="ornament-dot"></div>
+        <div class="ornament-dot"></div>
+        <span class="ornament-leaf">🌿</span>
+      </div>
+    </div>
+
+    <!-- ראשונות -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <h2 class="section-title">ר א ש ו נ ו ת</h2>
+        <span class="section-icon">🥗</span>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="item-name">ברוסקטה הצנה</div>
+          <div class="item-desc">ברוסקטות עם ממרח בוראטה וגבבניות שרי</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">לחם שום</div>
+          <div class="item-desc">פחמימה חמה, קריספית וממכרת שתדאג שאף אחד לא יתנשק אחרי הערב</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- סלטים -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <h2 class="section-title">ס ל ט י ם</h2>
+        <span class="section-icon">🥬</span>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="item-name">בטטות בתנור</div>
+          <div class="item-desc">כי רצינו לגוון את הצבעים בשולחן, וכי בטטה זה סוג של ירק, לא?</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">חגינה יוונית</div>
+          <div class="item-desc">ציזיקי יווני חגיגה בפה</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- מנות עיקריות -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <h2 class="section-title">מנות עיקריות</h2>
+        <span class="section-icon">🍽</span>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="item-name">פיצה מרגריטה</div>
+          <div class="item-desc">בצק אוורירי עם רוטב עגבניות וגבינת מוצרלה יאבלולו שמבלולו</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">פשטידת רולדת חרד</div>
+          <div class="item-desc">הדרך המתוחכמת שלנו לגרום לכם לאכול ירוק בין כל הגבינות והפחמימות פה</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">קונכיות פסטה ממולאות</div>
+          <div class="item-desc">פחמימה שמחבקת גבינה — ביס אחד ואתם באיטליה</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">חצילים מגולגלים</div>
+          <div class="item-desc">חציל וגבינה בגלגול נשמות חגיגי וטעים במיוחד</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">בורקסים של סבתא זהבה + ביוס</div>
+          <div class="item-desc">ביסים מושלמים של נוסטלגיה וחמאה. קחו שניים, סבתא מסתכלת</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">מצעד הפשטידות</div>
+          <div class="item-desc">קריספיות מבחוץ, נימוחות מבפנים והרבה יותר טעימות מסלט</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- קינוחים -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <h2 class="section-title">ק י נ ו ח י ם</h2>
+        <span class="section-icon">🍰</span>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item featured">
+          <div class="item-name">עוגת הגבינה של סבתא טובה ⭐</div>
+          <div class="item-desc">גבוהה, אוורירית וממכרת. תגידו שהיא יצאה מושלמת — טובה מקשיבה</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-leaves">🌿 🌾 🌿</div>
+      <p class="footer-love">עם הרבה אהבה</p>
+      <p class="footer-family">משפחת כהן</p>
+    </div>
+
+  </div>
+</body>
+</html>
